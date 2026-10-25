@@ -1,0 +1,6 @@
+{
+  "name": "Smart HR & Project Management Platform with AI Decision Support",
+  "description": "Enterprise HR and project management platform with AI-driven task assignment decision support, position tracking, and operational intelligence.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,1323 @@
+# MASTER PROMPT — Smart HR & Project Management Platform with AI Decision Support
+
+## 1. Your Role
+
+Act as a senior UI/UX designer, product designer, and full-stack frontend engineer specializing in modern enterprise SaaS platforms.
+
+Your task is to design and implement a complete, professional, responsive web application for:
+
+**Smart HR & Project Management Platform with AI Decision Support**
+
+GitHub repository:
+https://github.com/LINDA-FARAJ/Ai_HR
+
+This is an existing software project. You must inspect its repository, current files, architecture, database structure when available, and existing implementation before making changes.
+
+The goal is to build a beautiful, production-quality web interface that integrates with the existing Laravel backend and the existing AI service architecture without replacing or breaking them.
+
+Do not build only a landing page or a static dashboard mockup. Build the actual application interface with reusable components, navigation, forms, tables, charts, filters, dialogs, loading states, validation, and API integration.
+
+---
+
+## 2. Project Vision
+
+The platform combines Human Resource Management, Project Management, and AI-powered Decision Support in one unified system.
+
+It enables software companies to manage:
+
+- Company information and departments.
+- Employees and their employment history.
+- Job titles and employee positions.
+- Employee skills and experience.
+- Employee profiles, documents, and contracts.
+- Clients and their projects.
+- Project budgets, priorities, progress, and deadlines.
+- Tasks, dependencies, required skills, and responsible positions.
+- AI-powered task assignment recommendations.
+- Decision explanations, alternative recommendations, and operational insights.
+
+The platform must not look like a generic HR template.
+
+Its identity should communicate intelligence, clarity, trust, operational efficiency, and premium enterprise software.
+
+The AI Decision Support functionality must be a central part of the user experience, not an isolated chatbot added to an ordinary HR dashboard.
+
+## 3. Strict Technology and Architecture Requirements
+
+Before coding, inspect the existing GitHub repository and determine which frontend files and configurations already exist.
+
+Use the following architecture:
+
+- Frontend: React with TypeScript.
+- Styling: Tailwind CSS.
+- UI components: shadcn/ui where appropriate.
+- Icons: Lucide React.
+- Animations: Framer Motion.
+- Charts: Recharts.
+- Backend: Existing Laravel API.
+- AI service: Existing FastAPI service.
+- AI provider: Groq only.
+- Mobile application: Flutter, developed separately from this web interface.
+
+Use the existing project configuration whenever possible. Do not unnecessarily replace package versions, build tools, routing, or working dependencies.
+
+If the repository does not contain a usable web frontend, create the frontend in an appropriate dedicated directory without modifying the Laravel or FastAPI backend.
+
+Do not convert the Flutter application into a web application. This task is specifically for the web-based administration and management interface.
+
+### Critical architecture rules
+
+1. Laravel remains responsible for business logic, database operations, authentication, authorization, and API endpoints.
+2. FastAPI remains responsible for the existing AI request-processing workflow and communication with Groq.
+3. Groq is the only AI provider used by the project.
+4. Do not introduce scikit-learn, XGBoost, TensorFlow, PyTorch, local ML models, external AI providers, or additional decision-making algorithms.
+5. Do not implement a second backend or duplicate Laravel business logic inside React.
+6. Do not expose API keys, database credentials, or other secrets in frontend code.
+7. Do not invent existing API endpoints. Inspect the Laravel routes and current services first.
+8. Preserve all existing functionality and avoid destructive changes to the database or backend.
+9. If an API endpoint is unavailable, create a clearly isolated frontend integration placeholder and document the missing endpoint instead of pretending that the operation succeeded.
+10. Do not claim that data has been saved, a task has been assigned, or an AI recommendation has been generated unless the corresponding operation actually succeeds.
+
+Use environment variables for API configuration. Keep the Laravel API base URL configurable and use the existing authentication mechanism, including Laravel Sanctum where applicable.
+
+---
+
+## 4. Visual Design Direction
+
+Create a premium, modern enterprise SaaS dashboard inspired by the visual quality and usability of Linear, Vercel, Stripe, and modern project management platforms.
+
+Do not copy their interfaces. Use them as quality references.
+
+### Visual identity
+
+Use a sophisticated, clean visual language:
+
+- Primary background: warm off-white or very light neutral gray.
+- Main surfaces: white cards with subtle borders.
+- Primary accent: deep indigo or refined blue.
+- Secondary accent: violet for AI-related interactions.
+- Success: muted emerald.
+- Warning: amber.
+- Errors: restrained red.
+- Typography: Inter or a similar modern, highly readable typeface.
+- Rounded corners: approximately 12–16 px.
+- Subtle shadows rather than heavy shadows.
+- Consistent spacing and a clear typographic hierarchy.
+- Professional charts, progress indicators, badges, avatars, and tables.
+
+The overall interface should feel calm, intelligent, polished, and suitable for daily use by managers and employees.
+
+Avoid excessive gradients, oversized empty hero sections, excessive glassmorphism, cartoon illustrations, distracting neon colors, and unnecessary decoration.
+
+Use gradients sparingly for the AI Decision Support identity and selected highlights.
+
+### Application shell
+
+Build a complete application layout with:
+
+**Sidebar**
+- Company logo and name.
+- Overview.
+- AI Decision Support.
+- Employees.
+- Departments.
+- Positions and Job Titles.
+- Skills.
+- Contracts and Documents.
+- Clients.
+- Projects.
+- Tasks.
+- Reports and Analytics.
+- Settings.
+
+The sidebar should support collapse/expand behavior, active-route highlighting, icons, tooltips, and responsive mobile navigation.
+
+Only display navigation items the authenticated user is authorized to access.
+
+**Top navigation bar**
+- Breadcrumbs.
+- Global search.
+- Notifications.
+- Theme toggle.
+- Language selector.
+- User avatar and profile menu.
+- Company context where relevant.
+
+**Main content**
+- Page title and contextual description.
+- Primary and secondary actions.
+- Search and filtering controls.
+- Tables, charts, forms, detail views, and useful empty states.
+
+Use consistent application-wide components rather than implementing each screen independently.
+
+---
+
+## 5. Language and Localization
+
+The primary interface language must be Arabic, with correct right-to-left layout.
+
+Provide an English/Arabic language switcher.
+
+Arabic mode must correctly support:
+
+- RTL page layout.
+- Right-aligned navigation and text.
+- Appropriate Arabic typography.
+- Correct table and form alignment.
+- Direction-aware icons and navigation.
+- Localized dates, numbers, validation messages, and statuses.
+
+English mode must support a complete left-to-right layout.
+
+Do not simply translate the text while keeping an incorrect layout direction.
+
+Store translations in structured localization files rather than hardcoding translated strings throughout the components.
+
+Use realistic Arabic interface content suitable for software companies.
+
+---
+
+## 6. Authentication and User Access
+
+Create the following screens:
+
+- Login.
+- Forgot password.
+- Password reset if supported by the existing backend.
+- Unauthorized access.
+- Session expiration handling.
+
+Use the existing Laravel authentication API.
+
+Implement role-aware navigation and page access based on the existing permissions and roles.
+
+The expected roles include:
+
+- Super Admin.
+- Company Owner.
+- Department Manager.
+- Employee.
+
+Inspect the existing authorization implementation before deciding the exact permissions for each role.
+
+The interface must respect company boundaries. A company user must not be able to view or modify another company's private data simply by changing an ID in the URL.
+
+Do not invent a separate authentication system if one already exists.
+
+---
+
+## 7. Executive Dashboard
+
+Create a comprehensive dashboard for the authenticated user.
+
+### Summary cards
+
+Display relevant metrics based on the user's permissions:
+
+- Total employees.
+- Active employees.
+- Number of departments.
+- Active projects.
+- Pending tasks.
+- Tasks in progress.
+- Completed tasks.
+- Projects approaching deadlines.
+
+Use data from the backend whenever the relevant API endpoints exist.
+
+Do not hardcode dashboard totals as if they were real company data.
+
+### Charts
+
+Create attractive, interactive charts for:
+
+- Project status distribution.
+- Project completion progress.
+- Task status distribution.
+- Department employee distribution.
+- Upcoming project deadlines.
+- Task workload by department or position, when supported by actual data.
+
+### Activity and alerts
+
+Include:
+
+- Recent project updates.
+- Recently created tasks.
+- Upcoming deadlines.
+- Expiring employee documents and contracts when supported.
+- AI recommendations awaiting managerial review.
+- Operational alerts.
+
+Every chart, metric, and activity item should link to the relevant detail page where possible.
+
+---
+
+## 8. Company and Department Management
+
+### Company management
+
+Create a company profile page containing:
+
+- Company name.
+- Email.
+- Phone.
+- Address.
+- Logo.
+- Company-related settings supported by the backend.
+
+Respect the existing company data model. The company owner's information is associated with the company according to the existing design; do not create an unnecessary separate company-owner table or duplicate the existing user relationship.
+
+### Department management
+
+Create:
+
+- Department listing.
+- Department creation.
+- Department editing.
+- Department details.
+- Department employees.
+- Department positions.
+- Department task and project overview where data permits.
+
+Display department name and description, employee counts, and useful operational indicators.
+
+Do not allow users to associate a department with another company's records.
+
+---
+
+## 9. Employee Management
+
+Build a complete employee management experience.
+
+### Employee directory
+
+Provide:
+
+- Search by name, email, and employee code.
+- Filters by department, status, job title, and employment type where available.
+- Sorting and pagination.
+- Employee avatars.
+- Status badges.
+- Current job title and department.
+- Employee details navigation.
+- Create, edit, and view actions according to permissions.
+
+### Employee creation and editing
+
+Use a structured form with logical sections:
+
+**Basic information**
+- First name.
+- Last name.
+- Email.
+- Phone.
+- Employee code.
+- Hire date.
+- Employment status.
+
+**Employment assignment**
+- Department.
+- Job title.
+- Direct manager.
+- Employment type.
+- Primary position.
+- Position start and end dates.
+- Position status.
+- Notes.
+
+**Skills**
+- Employee skills.
+- Skill proficiency level.
+- Years of experience.
+- Skill verification status if available.
+
+**Profile**
+- Profile image.
+- Date of birth.
+- Gender.
+- Nationality.
+- Marital status.
+- Address.
+- City and country.
+- Emergency contact.
+- Biography.
+
+**Documents and contracts**
+- Documents associated with the employee.
+- Employment contracts.
+
+Use the existing backend structure and validation rules. Keep optional fields optional when the backend allows it.
+
+### Employee detail page
+
+Create a polished profile page with tabs:
+
+- Overview.
+- Positions and Employment History.
+- Skills.
+- Projects and Tasks.
+- Documents.
+- Contracts.
+
+Show the employee's position history as a chronological timeline.
+
+The system must support employees who have multiple positions and preserve historical records of department transfers, promotions, job title changes, and manager changes.
+
+Never assume that an employee has only one position.
+
+Use the existing `positions` table to represent an employee's assignment to a department and job title over a period of time.
+
+Display the current active position separately from historical positions.
+
+Do not create a new position catalog or change the existing database relationships.
+
+---
+
+## 10. Job Titles and Positions
+
+Create separate, clearly defined interfaces for job titles and employee positions.
+
+### Job Titles
+
+Support:
+
+- Listing job titles.
+- Creating job titles.
+- Editing descriptions and levels.
+- Viewing the positions associated with each job title.
+
+Use the existing `job_titles` data model.
+
+### Positions
+
+A position is an employment assignment connecting:
+
+- An employee.
+- A department.
+- A job title.
+- An optional manager.
+- Employment type.
+- Primary-position status.
+- Start date.
+- End date.
+- Status.
+- Notes.
+
+Create a positions table with useful filters and a position detail view.
+
+Show the associated employee, department, job title, and employment period.
+
+Do not confuse a job title with a position. A job title describes a role, while a position represents the employee's actual assignment within the company.
+
+The existing task model associates a task with a `position_id`. Preserve this relationship.
+
+This is important because the position identifies the employee, department, and job title responsible for the task.
+
+---
+
+## 11. Skills Management
+
+Create interfaces for managing skills and skill categories.
+
+### Skills
+
+Display:
+
+- Skill name.
+- Category.
+- Description.
+- Number of employees associated with the skill.
+- Number of tasks requiring the skill, if available.
+
+Support search, filtering, creation, editing, and viewing details according to the backend capabilities.
+
+### Employee skill details
+
+Display:
+
+- Employee name.
+- Skill name.
+- Proficiency level.
+- Years of experience.
+- Verification status.
+
+Use the existing employee-skill relationship and pivot fields.
+
+Do not invent proficiency scales or database fields without checking the existing implementation.
+
+### Skill relevance to tasks
+
+A task has one required skill through `skill_id`.
+
+Show this skill clearly in the task creation form, task details, and AI recommendation interface.
+
+The task's required skill must be used when displaying and explaining AI recommendations.
+
+---
+
+## 12. Employee Documents and Contracts
+
+Build a professional document management interface.
+
+### Documents
+
+Support the available operations for:
+
+- Uploading documents.
+- Viewing document details.
+- Downloading documents.
+- Updating document metadata.
+- Deleting documents according to permissions.
+- Displaying issue and expiry dates when available.
+- Showing document status.
+
+Use the existing Laravel file upload and storage implementation.
+
+Do not store file contents in browser local storage.
+
+Do not invent document types or database columns without inspecting the current schema.
+
+### Contracts
+
+Create:
+
+- Contract listing.
+- Contract detail page.
+- Contract creation and editing.
+- Employee association.
+- Contract type and status.
+- Start and end dates.
+- Expiry alerts.
+- Document attachments if supported.
+
+Use the actual backend fields and endpoints.
+
+Provide helpful empty states when no contracts or documents exist.
+
+---
+
+## 13. Client Management
+
+Create a client management module.
+
+The current client data model includes:
+
+- `id`.
+- `company_name`.
+- `contact_person`.
+- `email`.
+- `phone`.
+- `website`.
+- `address`.
+- `country`.
+- `city`.
+- `status`.
+- `notes`.
+- Timestamps.
+
+Preserve these field names and their existing meanings.
+
+### Client directory
+
+Include:
+
+- Client search.
+- Status filters.
+- Contact information.
+- Number of projects.
+- Create, edit, and view actions.
+
+### Client details
+
+Create a client profile page with:
+
+- Client information.
+- Contact details.
+- Associated projects.
+- Project statuses.
+- Total project budgets where meaningful.
+- Recent activity.
+
+A client can own multiple projects, and every project belongs to one client.
+
+Use the existing `client_id` relationship.
+
+---
+
+## 14. Project Management
+
+Create a complete project management module.
+
+The current project model includes:
+
+- `client_id`.
+- `name`.
+- `description`.
+- `budget`.
+- `priority`.
+- `progress`.
+- `status`.
+- `planned_start_date`.
+- `planned_end_date`.
+- `actual_start_date`.
+- `actual_end_date`.
+- `estimated_hours`.
+
+Preserve the current schema and enum values.
+
+### Project directory
+
+Display:
+
+- Project name.
+- Client.
+- Status.
+- Priority.
+- Progress.
+- Budget.
+- Planned start date.
+- Planned end date.
+- Number of tasks.
+
+Provide search, sorting, pagination, and filters.
+
+### Project creation and editing
+
+Create a polished form with:
+
+- Project name.
+- Client selection.
+- Description.
+- Budget.
+- Priority.
+- Status.
+- Planned start date.
+- Planned end date.
+- Actual start date.
+- Actual end date.
+- Estimated hours.
+
+Validate date ranges and numeric inputs in the frontend, while retaining backend validation as the authoritative validation layer.
+
+### Project detail page
+
+Create a project workspace with tabs:
+
+- Overview.
+- Tasks.
+- Task Timeline.
+- Team and Positions.
+- Budget and Progress.
+- Activity.
+
+The overview should include:
+
+- Progress indicator.
+- Project status.
+- Budget summary.
+- Project timeline.
+- Task completion statistics.
+- Upcoming deadlines.
+- Task status distribution.
+
+Do not calculate and save new project values through arbitrary frontend logic if the backend already owns those calculations.
+
+Use existing backend values and display computed summaries only when the calculation is well-defined.
+
+---
+
+## 15. Task Management
+
+Build a complete task management workspace.
+
+The existing task model includes:
+
+- `project_id`.
+- `parent_task_id`.
+- `position_id`.
+- `skill_id`.
+- `title`.
+- `description`.
+- `priority`.
+- `status`.
+- `progress`.
+- `estimated_hours`.
+- `actual_hours`.
+- `planned_start_date`.
+- `planned_end_date`.
+- `actual_start_date`.
+- `actual_end_date`.
+
+Preserve the current schema and enum values.
+
+### Task views
+
+Implement:
+
+1. Table view.
+2. Kanban board.
+3. Project-specific task list.
+4. Task detail page.
+5. Task hierarchy view.
+6. Timeline view when supported by the data.
+
+### Kanban columns
+
+Use the existing task statuses:
+
+- Pending.
+- Ready.
+- In Progress.
+- Review.
+- Completed.
+- Blocked.
+- Cancelled.
+
+Display the appropriate localized labels for each status.
+
+Only allow status transitions supported by the backend and current business rules.
+
+### Task cards
+
+Each card should display:
+
+- Task title.
+- Project.
+- Priority.
+- Status.
+- Progress.
+- Required skill.
+- Responsible position and employee.
+- Estimated hours.
+- Planned deadline.
+
+### Task creation
+
+Create a form with:
+
+- Project.
+- Parent task, optional.
+- Task title.
+- Description.
+- Priority.
+- Status.
+- Required skill.
+- Responsible position.
+- Estimated hours.
+- Actual hours.
+- Progress.
+- Planned start and end dates.
+- Actual start and end dates.
+
+The parent task must belong to the same project as the child task.
+
+Prevent a task from being its own parent and prevent invalid cyclic task hierarchies wherever validation can be performed safely.
+
+The backend must remain responsible for enforcing authoritative business rules.
+
+### Position-based responsibility
+
+A task is associated with a `position_id`.
+
+The position identifies the employee assigned to that role within a department and job title.
+
+Display the employee and department associated with the selected position.
+
+When choosing a responsible position, show enough context to distinguish employees with similar job titles.
+
+Do not add an `employee_id` field to the task model or introduce a separate task-assignment model without an explicit requirement and verified backend support.
+
+### Task dependencies and hierarchy
+
+The existing `parent_task_id` represents the parent-child relationship between tasks.
+
+Display the hierarchy clearly and make it easy to navigate between parent and child tasks.
+
+Do not silently reinterpret `parent_task_id` as a general dependency graph.
+
+---
+
+## 16. AI Decision Support — The Core Feature
+
+This module is the most important part of the product.
+
+Create a dedicated AI Decision Support workspace that feels intelligent, transparent, and trustworthy.
+
+It must be integrated with the existing Laravel-to-FastAPI-to-Groq architecture.
+
+Do not call Groq directly from the browser.
+
+Do not expose the Groq API key in frontend environment variables.
+
+Use the existing Laravel endpoint and request-processing service for AI operations. Inspect the current implementation before wiring the interface.
+
+### AI workspace overview
+
+Display:
+
+- Pending AI recommendations.
+- Recently generated recommendations.
+- Recommendations awaiting manager review.
+- Accepted recommendations.
+- Rejected recommendations.
+- Alternative candidates.
+- Relevant task and project context.
+
+Use actual backend data when available.
+
+### Generate a recommendation
+
+Allow an authorized manager to select a task and request an AI recommendation.
+
+Before requesting a recommendation, show a clear summary of:
+
+- Task title and description.
+- Project.
+- Required skill.
+- Required department through the responsible position context.
+- Required job title or position context.
+- Estimated task hours.
+- Priority.
+- Available eligible positions and their associated employees, where supported by the existing backend.
+
+Show a loading state while the recommendation is being generated.
+
+Handle API failures, validation errors, unavailable candidates, and timeouts gracefully.
+
+### Recommendation results
+
+Create a detailed recommendation card containing the fields returned by the existing AI recommendation service, when available:
+
+- Recommended employee.
+- Recommended position.
+- Confidence value.
+- Decision status.
+- Explanation.
+- Skill match.
+- Skill level.
+- Skill experience.
+- Skill verification.
+- Performance score.
+- Overall score.
+- Total experience.
+- Remaining available hours.
+- Estimated task hours.
+- Availability percentage.
+- Whether the employee can cover the task.
+- Alternative candidates.
+
+Use the actual backend response contract. Do not assume every field is always present.
+
+Clearly distinguish model-generated recommendations from values calculated or validated by Laravel.
+
+### Candidate comparison
+
+Create a comparison interface for recommended and alternative candidates.
+
+Show:
+
+- Employee name.
+- Department.
+- Job title.
+- Required skill match.
+- Experience.
+- Performance indicators.
+- Remaining capacity.
+- Estimated task workload.
+- Recommendation explanation.
+
+Only display values that exist in the actual backend response.
+
+Do not invent scores or fabricate candidate metrics.
+
+### Explainability
+
+For every recommendation, provide an explanation in readable language:
+
+- Why the candidate was recommended.
+- Which requirements match.
+- What capacity limitations exist.
+- What risks or constraints were identified.
+- Which alternatives are available.
+
+The explanation should make the decision understandable to a manager without requiring knowledge of AI internals.
+
+### Manager approval
+
+AI must never make the final managerial decision.
+
+Provide explicit actions:
+
+- Accept Recommendation.
+- Reject Recommendation.
+- View Alternatives.
+- Request Another Recommendation, if supported.
+- View Details.
+
+If the backend supports recording the manager's decision, connect these actions to the appropriate endpoints.
+
+If approval or rejection endpoints do not yet exist, clearly isolate these actions as pending backend integration. Do not simulate a successful persistent operation.
+
+Once the manager accepts a recommendation, the task's `position_id` should be updated through the existing backend business workflow, if supported.
+
+Never change the assigned position simply because Groq returned a recommendation.
+
+### AI design language
+
+Use subtle violet accents, elegant AI status indicators, compact explanations, comparison panels, and clear decision states.
+
+Avoid excessive animated robots, decorative AI particles, or a generic chatbot as the entire AI experience.
+
+The main purpose is decision support, explainability, and managerial control.
+
+---
+
+## 17. AI Recommendation History
+
+Create a recommendation history page using the existing `ai_task_recommendations` data model and actual API capabilities.
+
+Display, where available:
+
+- Task.
+- Recommended employee.
+- Recommended position.
+- Recommendation decision.
+- Confidence.
+- Explanation.
+- Overall score.
+- Date generated.
+- Manager decision, if stored by the backend.
+
+Allow users to filter by project, task, status, employee, and date when the backend supports these filters.
+
+Create a detailed recommendation view with the complete response and alternatives.
+
+Do not invent additional AI algorithms or generate artificial historical recommendations to populate the page.
+
+---
+
+## 18. Reports and Analytics
+
+Create a reporting section with a professional, data-driven design.
+
+Potential reports include:
+
+- Employee distribution by department.
+- Employee skill distribution.
+- Position history.
+- Project status overview.
+- Project completion progress.
+- Budget utilization.
+- Task status distribution.
+- Overdue tasks.
+- Estimated versus actual task hours.
+- Workload by position and employee.
+- AI recommendation outcomes.
+
+Only implement reports using data that the backend can provide or derive reliably from available data.
+
+Do not fabricate performance or financial statistics.
+
+Add date filters, project filters, department filters, and export options only where practical.
+
+If export functionality is implemented in the frontend, ensure that the exported content comes from actual retrieved data.
+
+---
+
+## 19. Search and Notifications
+
+Implement a global search interface that can search the relevant entities exposed by the backend:
+
+- Employees.
+- Departments.
+- Job titles.
+- Skills.
+- Clients.
+- Projects.
+- Tasks.
+
+Use debouncing and avoid unnecessary API requests.
+
+Create a notification center for supported events, such as:
+
+- Upcoming deadlines.
+- Overdue tasks.
+- Expiring documents.
+- Expiring contracts.
+- New AI recommendations.
+- Recommendations awaiting review.
+
+Use actual notification APIs if they exist. Do not fabricate a notification backend.
+
+If the existing backend has no notification functionality, create the visual interface and document the missing integration.
+
+---
+
+## 20. Settings
+
+Create a settings interface for the capabilities that exist in the backend:
+
+- Company profile.
+- User profile.
+- Appearance.
+- Language.
+- Notification preferences.
+- Account security.
+- Role and permission administration for authorized administrators.
+
+Include a dark theme if it can be implemented consistently across all screens.
+
+Persist preferences appropriately and avoid storing authentication secrets in local storage.
+
+Do not create settings that imply a backend capability exists when it does not.
+
+---
+
+## 21. Motion and Micro-Interactions
+
+Use Framer Motion for subtle, purposeful animations.
+
+Implement:
+
+- Smooth page transitions.
+- Sidebar expansion and collapse.
+- Dropdown and dialog transitions.
+- Staggered dashboard card entrances.
+- Subtle hover states.
+- Animated progress indicators.
+- Smooth tab transitions.
+- Toast notifications.
+- Skeleton loading states.
+- Small interactions on Kanban cards.
+
+Animations should feel premium and responsive, not distracting.
+
+Keep durations short and use consistent easing.
+
+Respect the user's reduced-motion preference.
+
+Avoid animations that delay navigation or interfere with forms, data tables, or accessibility.
+
+---
+
+## 22. Responsive Design
+
+The application must work well on:
+
+- Large desktop screens.
+- Standard laptops.
+- Tablets.
+- Mobile browsers.
+
+On desktop, use the full sidebar and data-rich layouts.
+
+On smaller screens:
+
+- Collapse navigation into a mobile drawer.
+- Adapt tables into responsive layouts.
+- Prevent horizontal overflow.
+- Make forms easy to use.
+- Preserve access to primary actions.
+- Make charts readable.
+- Support touch-friendly interactions.
+
+Test Arabic RTL and English LTR layouts separately.
+
+---
+
+## 23. Reusable Component Architecture
+
+Create a maintainable, reusable frontend structure.
+
+A possible structure is:
+
+src/
+  app/
+  components/
+    ui/
+    layout/
+    data-display/
+    forms/
+    charts/
+    feedback/
+  features/
+    auth/
+    dashboard/
+    company/
+    departments/
+    employees/
+    positions/
+    job-titles/
+    skills/
+    documents/
+    contracts/
+    clients/
+    projects/
+    tasks/
+    ai-decision-support/
+    reports/
+    settings/
+  hooks/
+  lib/
+  services/
+    api/
+  types/
+  i18n/
+  routes/
+
+Adapt this structure to the existing repository rather than blindly replacing its current architecture.
+
+Build reusable components such as:
+
+- PageHeader.
+- MetricCard.
+- DataTable.
+- FilterBar.
+- SearchInput.
+- StatusBadge.
+- PriorityBadge.
+- ProgressBar.
+- EmployeeAvatar.
+- EmptyState.
+- LoadingSkeleton.
+- ConfirmDialog.
+- FormField.
+- DateField.
+- SelectField.
+- NotificationToast.
+- ErrorState.
+- Pagination.
+- AIRecommendationCard.
+- CandidateComparison.
+- TaskCard.
+- ProjectProgressCard.
+
+Use strict TypeScript types for API requests and responses.
+
+Avoid `any` unless there is a documented reason.
+
+Keep API logic out of presentation components.
+
+Use a consistent error-handling and loading-state strategy.
+
+---
+
+## 24. API Integration Strategy
+
+Inspect the existing Laravel routes, controllers, requests, resources, and services before implementing frontend API calls.
+
+Create a centralized API client that:
+
+- Reads the backend base URL from environment configuration.
+- Handles authentication using the existing authentication mechanism.
+- Handles JSON requests and responses.
+- Supports file uploads where required.
+- Handles validation errors.
+- Handles unauthorized and forbidden responses.
+- Handles expired sessions.
+- Handles server errors and network failures.
+- Avoids duplicate requests where appropriate.
+
+Do not hardcode an unverified endpoint.
+
+Do not assume that every resource supports every CRUD operation.
+
+Use the actual backend API contract.
+
+If the project uses Laravel Sanctum with cookie-based authentication, implement the appropriate CSRF and credential handling. If it uses token-based authentication, follow the existing implementation instead.
+
+Create typed service modules for employees, positions, skills, clients, projects, tasks, documents, contracts, and AI recommendations as supported by the existing API.
+
+### Development fallback
+
+If the backend cannot be reached during frontend development:
+
+- Keep the interface usable with clearly identified mock data.
+- Isolate mock data from production API services.
+- Display a clear development or demo indicator.
+- Never present mock data as real saved records.
+- Do not claim that create, update, delete, or approval actions were persisted.
+- Make it easy to switch to the real backend without rewriting the UI.
+
+---
+
+## 25. Accessibility and Usability
+
+Follow practical accessibility standards.
+
+Implement:
+
+- Keyboard-accessible navigation.
+- Visible focus states.
+- Accessible form labels.
+- Appropriate color contrast.
+- Semantic HTML.
+- Accessible dialogs.
+- Clear validation messages.
+- Accessible tooltips.
+- Screen-reader-friendly status indicators.
+- Reduced-motion support.
+
+Do not rely on color alone to communicate priority, status, or errors.
+
+Make all important operations understandable without requiring users to guess what an icon means.
+
+---
+
+## 26. Security and Data Integrity
+
+The frontend must not be treated as the security boundary.
+
+Respect backend authorization and validation.
+
+Do not:
+
+- Expose API secrets.
+- Bypass authentication.
+- Trust user-provided company IDs.
+- Allow unauthorized cross-company access.
+- Execute arbitrary AI-generated instructions.
+- Automatically accept AI recommendations.
+- Display confidential employee information to unauthorized users.
+- Delete related records without respecting backend deletion policies.
+
+Handle employee documents and contracts as sensitive business data.
+
+Use confirmation dialogs for destructive operations.
+
+Do not send unnecessary employee personal information to the AI service. The AI workflow should use only the data required by the existing recommendation process.
+
+---
+
+## 27. Required Development Workflow
+
+Follow these steps in order.
+
+### Step 1 — Inspect
+
+Inspect the connected repository and identify:
+
+- Existing frontend framework and entry point.
+- Existing components and styling system.
+- Current dependencies.
+- Laravel API routes and request/response contracts, if accessible.
+- Existing authentication and authorization behavior.
+- Existing employee, position, skill, client, project, and task structures.
+- Existing AI recommendation endpoints and response format.
+- Missing endpoints that may prevent a complete integration.
+
+Do not begin by deleting files or replacing the entire project.
+
+### Step 2 — Plan
+
+Create a concise implementation plan covering:
+
+- Application structure.
+- Design system.
+- Navigation.
+- Main screens.
+- API integration.
+- Authentication.
+- Localization.
+- Responsive behavior.
+
+### Step 3 — Build the foundation
+
+Implement:
+
+- Design tokens.
+- Application shell.
+- Sidebar.
+- Top navigation.
+- Routing.
+- Authentication handling.
+- Arabic RTL and English LTR.
+- Reusable UI components.
+- Centralized API client.
+
+### Step 4 — Build the screens
+
+Implement the dashboard and modules described in this prompt.
+
+Prioritize a coherent, usable application over isolated, unrelated pages.
+
+### Step 5 — Integrate the backend
+
+Connect each screen to the actual backend endpoints.
+
+Document any endpoint or response contract that is missing.
+
+Do not modify the backend automatically to compensate for an assumed API.
+
+### Step 6 — Validate
+
+Run the available checks and fix the issues you introduce.
+
+Verify:
+
+- Build success.
+- TypeScript errors.
+- Routing.
+- Authentication behavior.
+- API error handling.
+- Form validation.
+- RTL and LTR layouts.
+- Responsive layouts.
+- Loading and empty states.
+- Navigation permissions.
+- AI recommendation rendering.
+- No accidental destructive changes.
+
+### Step 7 — Final review
+
+Review the application as a real enterprise product.
+
+Remove unnecessary placeholder content, inconsistent styles, dead buttons, broken routes, duplicated components, and distracting animations.
+
+Make the main workflows understandable without needing an explanation from the developer.
+
+---
+
+## 28. Definition of Done
+
+The task is complete when:
+
+1. The application has a cohesive, premium enterprise SaaS design.
+2. Arabic RTL and English LTR both work correctly.
+3. Navigation and routing work across all implemented screens.
+4. Employee management reflects the existing employment-history model.
+5. Positions correctly connect employees, departments, and job titles.
+6. Tasks display their project, required skill, parent task, and responsible position.
+7. Client and project relationships follow the existing database structure.
+8. Forms use the actual backend fields and validation rules.
+9. API integrations use verified endpoints.
+10. AI recommendations are presented with explanations and alternatives where available.
+11. Managerial approval remains explicit and separate from AI recommendations.
+12. No additional AI provider or ML algorithm has been introduced.
+13. The interface is responsive and accessible.
+14. The existing backend and working project configuration remain intact.
+15. The build succeeds and all known missing integrations are documented.
+
+---
+
+## 29. Final Instructions
+
+Begin by inspecting the connected GitHub repository and the available backend contracts.
+
+Then implement the application in a structured, incremental manner.
+
+Do not stop after creating a static dashboard.
+
+Do not replace existing files unnecessarily.
+
+Do not invent backend functionality.
+
+Do not change the database architecture simply to make the frontend easier to implement.
+
+Do not introduce extra AI algorithms. Groq is the only AI provider, and AI acts as a decision-support advisor while the manager remains the final decision-maker.
+
+The final result should look and feel like a carefully designed, premium enterprise product: modern, animated in a restrained way, visually consistent, fully responsive, accessible, and ready for integration with the existing Laravel and FastAPI services.
+
+Start with repository inspection, then proceed with implementation.
